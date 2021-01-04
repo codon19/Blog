@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function User(firstname, lastname) {
+      this.firstname = firstname
+      this.lastname = lastname
+    }
+    const user = new User('tony', 'J')
+    console.log(User.prototype)
+    console.log(Object.getPrototypeOf(user) === User.prototype)
+
+    function func() {}
+    console.log(func.prototype)
+
+    const obj1 = { a: 1 }
+    console.log(Object.getPrototypeOf(obj1) === Object.prototype)
+
+    const obj2 = Object.create(null)
+
+    console.log(typeof func.__proto__)
+    console.log(Function.prototype)
+  </script>
+</body>
+</html>

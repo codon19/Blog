@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    class Person {
+      constructor(name) {
+        this.name = name
+      }
+      getName() {
+        return this.name
+      }
+
+      get age() {
+        console.log('get')
+        return 19
+      }
+
+      set age(value) {
+        console.log('set', value)
+      }
+    }
+
+    console.log(Person.name)
+
+    console.log(Object.keys(Person.prototype))
+    console.log(Object.getOwnPropertyNames(Person.prototype))
+
+    const tom = new Person('Tom')
+    console.log(tom.getName())
+
+    console.log(Object.getPrototypeOf(Person) === Function.prototype)
+
+    console.log(tom.age = 20)
+  </script>
+</body>
+</html>

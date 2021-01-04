@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    const lookupProperty = (object, propertyName) => {
+      let current = object
+      if (current === null) {
+        return new Error(`Cannot read property ${propertyName} of ${object}`)
+      }
+      while(current) {
+        if (current.hasOwnProperty(propertyName)) {
+          return current[propertyName]
+        }
+        current = Object.getPrototypeOf(current)
+      }
+      return undefined
+    }
+    console.log(lookupProperty(undefined, 'toString'))
+  </script>
+</body>
+</html>
