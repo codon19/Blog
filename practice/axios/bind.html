@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    const a = {
+      name: 'A',
+      sayName: function(age, sex) {
+        console.log('age', age)
+        console.log('sex', sex)
+        console.log(this.name)
+      }
+    }
+
+    console.log('name' in a)
+    const b = { name: 'B' }
+
+    // a.sayName.bind(b, 19, 'male')
+
+    function bind(fn, thisArg) {
+      return function wrap() {
+        const args = new Array(arguments.length);
+        for (let i = 0; i < args.length; i++) {
+          args[i] = arguments[i];
+        }
+        return fn.apply(thisArg, args);
+      };
+    };
+    // bind(a.sayName, b)(19, 'male')
+
+    Function.prototype.bind2 = function() {
+      const _this = this
+      const fn = arguments[0]
+      const args = Array.prototype.slice.call(arguments, 1)
+      return function wrap() {
+        const bindArgs = Array.prototype.slice.call(arguments)
+        return _this.apply(fn, [...args, ...bindArgs])
+      }
+    }
+    a.sayName.bind2(b, 19)('male')
+  </script>
+</body>
+</html>
